@@ -1,0 +1,67 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model VisitLog {
+  id        Int      @id @default(autoincrement())
+  visitorId String
+  visitTime DateTime @default(now())
+  userAgent String?
+
+  @@map("visit_logs")
+}
+
+model RecommendationLog {
+  id          Int      @id @default(autoincrement())
+  visitorId   String
+  createdAt   DateTime @default(now())
+  peopleCount Int
+  budget      String
+  flavor      String?
+  ingredients String?
+  remark      String?
+  aiResponse  String
+
+  @@map("recommendation_logs")
+}
+
+model WeeklyPlanLog {
+  id                 Int      @id @default(autoincrement())
+  visitorId          String
+  createdAt          DateTime @default(now())
+  peopleCount        Int
+  budget             String
+  flavor             String?
+  ingredients        String?
+  remark             String?
+  weeklyPlanResponse String
+
+  @@map("weekly_plan_logs")
+}
+
+model PageDurationLog {
+  id              Int      @id @default(autoincrement())
+  visitorId       String
+  pageName        String
+  enterTime       DateTime
+  leaveTime       DateTime?
+  durationSeconds Int?
+
+  @@map("page_duration_logs")
+}
+
+model VisitorStat {
+  visitorId      String   @id
+  firstVisitTime DateTime @default(now())
+  lastVisitTime  DateTime @default(now())
+  visitCount     Int      @default(1)
+
+  @@map("visitor_stats")
+}
