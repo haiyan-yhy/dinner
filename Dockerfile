@@ -23,7 +23,6 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/prisma ./prisma
 
-# /data is the Railway persistent volume mount point
 RUN mkdir -p /data
 
 EXPOSE 3000

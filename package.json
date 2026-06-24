@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "prisma db push --skip-generate && next start",
-    "postinstall": "prisma generate",
     "db:push": "prisma db push"
   },
   "keywords": [],
