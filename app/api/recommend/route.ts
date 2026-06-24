@@ -2,11 +2,6 @@ import { NextRequest, NextResponse } from "next/server"
 import OpenAI from "openai"
 import { prisma } from "@/lib/prisma"
 
-const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY,
-  baseURL: "https://api.deepseek.com",
-})
-
 const SYSTEM_PROMPT = `你是一位擅长家庭饮食规划的美食顾问。
 
 用户正在纠结今晚吃什么。
@@ -33,6 +28,11 @@ const SYSTEM_PROMPT = `你是一位擅长家庭饮食规划的美食顾问。
 备选方案2：[菜品名称]`
 
 export async function POST(req: NextRequest) {
+  const client = new OpenAI({
+    apiKey: process.env.DEEPSEEK_API_KEY,
+    baseURL: "https://api.deepseek.com",
+  })
+
   try {
     const { visitorId, peopleCount, budget, flavor, ingredients, remark } = await req.json()
 
