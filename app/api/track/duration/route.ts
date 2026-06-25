@@ -9,16 +9,15 @@ export async function POST(req: NextRequest) {
       data: {
         visitorId,
         pageName,
-        enterTime: new Date(Number(enterTime)),
-        leaveTime: leaveTime ? new Date(Number(leaveTime)) : null,
+        enterTime: new Date(enterTime),
+        leaveTime: leaveTime ? new Date(leaveTime) : null,
         durationSeconds: durationSeconds ?? null,
       },
     })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
     console.error("[track/duration] Failed to write PageDurationLog:", err)
-    return NextResponse.json({ ok: false, error: message }, { status: 500 })
+    return NextResponse.json({ ok: false }, { status: 500 })
   }
 }
