@@ -342,7 +342,7 @@ export default function HomePage() {
                       {loadingWeekly ? (
                         <span className="flex items-center justify-center gap-2">
                           <span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
-                          AI 正在规划菜单...
+                        正在规划菜单...
                         </span>
                       ) : (
                         "生成本周菜单"

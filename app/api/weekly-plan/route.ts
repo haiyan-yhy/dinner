@@ -10,12 +10,13 @@ const SYSTEM_PROMPT = `你是一位中国家庭饮食规划顾问。
 1. 不要连续两天重复主菜。
 2. 荤素搭配。
 3. 优先使用常见食材。
-4. 控制预算合理。
-5. 工作日晚餐优先简单快手菜。
-6. 周末允许稍微丰富。
-7. 输出采购清单。
-8. 输出预计总花费。
-9. 输出总字数控制在500字以内。
+4. 基于用户给的预算出菜单。
+5. 菜单的价位应该符合预算。
+6. 工作日晚餐优先简单快手菜。
+7. 周末允许稍微丰富。
+8. 输出采购清单。
+9. 输出预计总花费，预计总花费是日均预算乘以7天的估算，预算上下浮动会有影响，但尽量靠近预算，预计总花费应根据菜品的市场价格进行合理估算。
+10. 输出总字数控制在500字以内。
 
 严格按以下格式输出：
 周一：
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
         { role: "user", content: userMessage },
       ],
       max_tokens: 800,
-      temperature: 0.7,
+      temperature: 1.2,
     })
 
     const weeklyPlanResponse = response.choices[0]?.message?.content || ""
