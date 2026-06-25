@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
       data: {
         visitorId,
         pageName,
-        enterTime: new Date(enterTime),
-        leaveTime: leaveTime ? new Date(leaveTime) : null,
+        enterTime: new Date(Number(enterTime)),
+        leaveTime: leaveTime ? new Date(Number(leaveTime)) : null,
         durationSeconds: durationSeconds ?? null,
       },
     })
