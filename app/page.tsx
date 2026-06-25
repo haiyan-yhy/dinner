@@ -237,7 +237,7 @@ export default function HomePage() {
               {loadingRecommend ? (
                 <span className="flex items-center justify-center gap-2">
                   <span className="animate-spin inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
-                  AI 正在帮你决定...
+                  正在为你推荐...
                 </span>
               ) : (
                 "帮我决定"
