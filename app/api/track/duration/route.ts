@@ -16,7 +16,9 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json({ ok: true })
-  } catch {
-    return NextResponse.json({ ok: false }, { status: 500 })
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err)
+    console.error("[track/duration] Failed to write PageDurationLog:", err)
+    return NextResponse.json({ ok: false, error: message }, { status: 500 })
   }
 }
